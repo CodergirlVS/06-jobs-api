@@ -15,6 +15,9 @@ const auth = (req, res, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     //attach the user to the job routes
 
+    // const user = User.findById(payload.id).select('-password') //select and remove the password
+    // req.user = user
+
     req.user = { userId: payload.userId, name: payload.name };
     next()
   } catch (error) {
