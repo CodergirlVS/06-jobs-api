@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError } = require("../errors");
 // const bcrypt = require('bcryptjs') // to convert password fom string to hash. This is moved inside the model
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   //const { name, email, password } = req.body;
@@ -12,10 +12,11 @@ const register = async (req, res) => {
   //  } // Without the trhow we can still get 500 error taken care by the mongoose validations but we want more meaningful errors
 
   const user = await User.create({ ...req.body });
-  const token = jwt.sign({userId: user._id, name:user.name}, 'jwtSecret', {
-    expiresIn: '30d',
-  })
-  res.status(StatusCodes.CREATED).json({ name: user.getName(), token });
+  // const token = jwt.sign({ userId: user._id, name: user.name }, "jwtSecret", {
+  //   expiresIn: "30d",
+  // }); //when the token is not part of the schema
+  const token = user.createJWT()
+  res.status(StatusCodes.CREATED).json({user: {name: user.name} , token });
 };
 
 const login = async (req, res) => {
