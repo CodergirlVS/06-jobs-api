@@ -23,7 +23,7 @@ const JobSchema = new mongoose.Schema(
       required: [true, "Please provide user"],
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Job', JobSchema)

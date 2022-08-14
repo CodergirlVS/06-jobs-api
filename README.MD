@@ -67,3 +67,11 @@ Swagger UI
       required: true
       description: the job id
 ```
+
+#### Postman to auto accept Barer token
+pass this code inside the Test window for Login and Register
+
+const jsonData = pm.response.json()
+pm.globals.set("accessToken", jsonData.token);
+
+Then where we want to use it, we will go to authorization and type is Bearer token.

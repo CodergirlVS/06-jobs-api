@@ -4,11 +4,15 @@ const {BadRequestError, NotFoundError} = require('../errors')
 
 
 const getAllJobs = async (req, res) => {
-    res.send("get all jobs");
+   const jobs = await Job.find({createdBy: req.user.userId}).sort('createdAt')
+   res.status(StatusCodes.OK).json({jobs, count: jobs.length})
   };
   
   const getJob = async (req, res) => {
-    res.send("get job");
+    const {user:{userId}, params:{id:jobId}} = req 
+    // nested destructuring/ getting userId from user and JobId from params
+
+
   };
   
   const createJob = async (req, res) => {
