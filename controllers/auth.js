@@ -13,7 +13,7 @@ const register = async (req, res) => {
 
   const user = await User.create({ ...req.body });
   // const token = jwt.sign({ userId: user._id, name: user.name }, "jwtSecret", {
-  //   expiresIn: "30d",
+  //   expiresIn: "30d",// 30 menas 30seconds but "30" means 30msand we want days so we day "30d"
   // }); //when the token is not part of the schema
   const token = user.createJWT()
   res.status(StatusCodes.CREATED).json({user: {name: user.name} , token });
