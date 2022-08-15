@@ -46,14 +46,14 @@ Email Validation Regex
 
 - Validation Errors
 - Duplicate (Email)
-- Cast Error
+- Cast Error (syntax doesnt match the mongoose model)
 
 #### Security
 
-- helmet
-- cors
-- xss-clean
-- express-rate-limit
+- helmet (prevents neumorous http attacks)
+- cors (api is accessible from different domains)
+- xss-clean (sanitizes user input in req.body, req.params, req.query. When attackers tries to inject malacious code it protects against cross site scripting attack )
+- express-rate-limit (limits user access)
 
 Swagger UI
 
@@ -67,3 +67,11 @@ Swagger UI
       required: true
       description: the job id
 ```
+
+#### Postman to auto accept Barer token
+pass this code inside the Test window for Login and Register
+
+const jsonData = pm.response.json()
+pm.globals.set("accessToken", jsonData.token);
+
+Then where we want to use it, we will go to authorization and type is Bearer token.
