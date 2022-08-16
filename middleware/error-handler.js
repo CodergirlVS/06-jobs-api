@@ -10,13 +10,15 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   //   return res.status(err.statusCode).json({ msg: err.message });
   // } //commented as we have new customError
 
-  if(err.name === "ValidationError") { //instead of sending object for missing email and password we are only sending one line message
+  //at registration checks for missing email and password
+   if(err.name === "ValidationError") { //instead of sending object for missing email and password we are only sending one line message
     console.log(Object.values(err.errors))
     customError.msg =Object.values(err.errors)
     .map(item => item.message).join(', ')
       customError.statusCode = 400
   }
 
+  //Error for Duplicate email registration
   if (err.code && err.code === 11000) {
     customError.msg = `Duplicate value entered for ${Object.keys(err.keyValue)} field, please choose another value`;
     customError.statusCode = 400;
