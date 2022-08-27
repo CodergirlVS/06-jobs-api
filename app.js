@@ -34,10 +34,11 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
-app.get('/', (eq, res) => {
-  res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>')
-})
+// app.get('/', (eq, res) => {
+//   res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>')
+// })
 
+app.use(express.static('public'))
 
 // routes
 app.use("/api/v1/auth", authRouter);
