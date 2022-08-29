@@ -33,6 +33,9 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createJWT = function() {
+  if (!process.env.JWT_SECRET) {
+    throw new Error ("Missing JWT Secret")
+  } else {
   return jwt.sign(
     { userId: this._id, name: this.name },
     process.env.JWT_SECRET,
@@ -40,6 +43,7 @@ UserSchema.methods.createJWT = function() {
       expiresIn: process.env.JWT_LIFETIME,
     }
   );
+  }
 };
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
