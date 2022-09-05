@@ -85,13 +85,15 @@ Then where we want to use it, we will go to authorization and type is Bearer tok
 -Postman export the api and save in as week12.json: Make sure the URL is same for all the paths
 - open https://www.apimatic.io/account/register
 - import week12.json file
-- **basic setting** 
+- **basic setting in apimatic.io** 
 -Back to home page: (apimatics.io) on the file, select *Export API*:
 API version is 1.0, *Export Format is OpenAPI v3.1 (YAML)* and *Export* the file
+
 - Open swagger editor and paste the exported code init. (https://editor.swagger.io/)
+
 **Test the code is functioning**
 - remove any additonal tags and schema related code
-- search for swagger ui parameters to get dynamic params and nor hard code the params
+- search for swagger ui parameters to get dynamic params and not hard code the params
 - copy the part of the code from common Parameters like this
 Replace the /Job/6309a140206e29229452777d with below code so we dont have a specific id for the job.
 replace the hard coded job id for update and get single or delete and at the beginning paste this code and define the parameters
