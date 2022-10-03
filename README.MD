@@ -80,3 +80,9 @@ Then where we want to use it, we will go to authorization and type is Bearer tok
  "engines": {
     "node": "16.x"
   }
+  change port or PORT in app.js
+  git heroku login
+  git heroku create
+  git add . git commit -m 
+  git push heroku main
+  
